@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  color-scheme: light;
+}
+
+:root[data-color-scheme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-color-scheme]) {
+    --background: #0a0a0a;
+    --foreground: #ffffff;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Container holding starter prompts */
+[data-chatkit-start-screen] {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* Individual starter prompt buttons */
+[data-chatkit-start-prompt] {
+  background: #8bedf8;
+  color: #0369a1;
+  border-radius: 14px;
+  padding: 14px 10px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+[data-chatkit-start-prompt]:hover {
+  background: #8bedf8;
+  transform: translateY(-2px);
+}
+
+/* Hide starter prompts once messages exist */
+[data-chatkit-chat]:has([data-chatkit-message]) 
+  [data-chatkit-start-screen] {
+  display: none;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  [data-chatkit-start-screen] {
+    grid-template-columns: repeat(2, 1fr);
+    
+  }
+}
+
+openai-chatkit {
+  display: block;
+}
+
+openai-chatkit > div {
+  padding-top: 0 !important;
+}
