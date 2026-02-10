@@ -1,18 +1,19 @@
 (function () {
-  const iframe = document.createElement("iframe");
+  if (window.__TIMA_WIDGET_LOADED__) return;
+  window.__TIMA_WIDGET_LOADED__ = true;
 
-  iframe.src = "https://tima-chatbot.vercel.app/";
+  const container = document.getElementById("tima-chatbot");
+  if (!container) return;
+
+  const iframe = document.createElement("iframe");
+  iframe.src = "https://tima-chatbot.vercel.app";
+
   iframe.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 380px;
-    height: 520px;
+    width: 100%;
+    height: 100%;
     border: none;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    z-index: 9999;
+    border-radius: 12px;
   `;
 
-  document.body.appendChild(iframe);
+  container.appendChild(iframe);
 })();
