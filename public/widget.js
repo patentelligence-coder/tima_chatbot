@@ -1,7 +1,7 @@
 (function () {
   const iframe = document.createElement("iframe");
 
-  iframe.src = "http://tima-chatbot.vercel.app/";
+  iframe.src = "https://tima-chatbot.vercel.app/";
   iframe.style.cssText = `
     width: 100%;
     height: 100%;
@@ -11,4 +11,5 @@
 
   document.body.appendChild(iframe);
 })();
+
 
