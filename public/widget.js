@@ -4,12 +4,13 @@
 
   iframe.src = "https://tima-chatbot.vercel.app/";
   iframe.style.width = "100%";
-  iframe.style.height = "600px";
+  iframe.style.height = "640px";
   iframe.style.border = "none";
   
    container.appendChild(iframe);
   // document.body.appendChild(iframe);
 })();
+
 
 
 
