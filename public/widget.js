@@ -1,15 +1,15 @@
 (function () {
+  const container = document.currentScript.parentElement;
   const iframe = document.createElement("iframe");
 
   iframe.src = "https://tima-chatbot.vercel.app/";
-  iframe.style.cssText = `
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 12px;
-  `;
-
-  document.body.appendChild(iframe);
+  iframe.style.width = "100%";
+  iframe.style.height = "600px";
+  iframe.style.border = "none";
+  
+   container.appendChild(iframe);
+  // document.body.appendChild(iframe);
 })();
+
 
 
