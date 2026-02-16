@@ -52,7 +52,7 @@ export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
     },
      surface: {
         background: '#faf7fe',
-        foreground: '#ffffff'
+        foreground: '#c5f5fa'
       }
   },
   radius: 'pill',
