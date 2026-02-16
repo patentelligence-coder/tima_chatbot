@@ -47,7 +47,7 @@ export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
       shade: theme === "dark" ? -1 : -4,
     },
     accent: {
-      primary: theme === "dark" ? "#faf7fe" : "#0f172a",
+      primary: theme === "dark" ? "#0f172a" : "#0f172a",
       level: 1,
     },
      surface: {
