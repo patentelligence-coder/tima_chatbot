@@ -269,7 +269,7 @@ export function ChatKitPanel({
       ...getThemeConfig(theme),
     },
     startScreen: {
-      greeting:"Hello! Where are you in your inventor journey?",
+      greeting:"Hello inventor",
     //   // prompts: STARTER_PROMPTS,
     },
     composer: {
@@ -282,8 +282,8 @@ export function ChatKitPanel({
     history:{
       enabled: false,
     },
-    // header: {enabled: false,
-    // },
+    header: {enabled: false,
+    },
     threadItemActions: {
       feedback: false,
     },
@@ -352,7 +352,7 @@ export function ChatKitPanel({
 
   
   return (
-  <div className="relative flex h-[90vh] w-full flex-col">
+  <div className="relative flex h-[70vh] w-full flex-col">
 
     {/* 🔵 Greeting + Starter Prompts */}
     {!hasStarted && (
@@ -376,7 +376,7 @@ export function ChatKitPanel({
     )}
 
     {/* 🩶 BIG Chat Container */}
-    <div className="mt-1 flex-1 flex flex-col justify-start px-3 pb-15">
+    <div className="mt-0 flex-1 flex flex-col justify-start px-3 pb-15">
       <div
         className={`
           relative mx-auto flex-1 w-full max-w-2xl max-h-lg
@@ -387,14 +387,18 @@ export function ChatKitPanel({
           transition-all duration-2500 ease-in-out
           // ${hasStarted ? "h-full" : "h-[320px]"}
           rounded-[30px]
-          ${hasStarted ? "min-h-[70vh]" : "min-h-[35rem]"}
+          ${hasStarted ? "h-full" : "h-[420px]"}
+
         `}
       >
-        {/* <div className="absolute inset-x-0 top-0 bottom-81 flex flex-col"> */}
         <div
           className={`
-            absolute inset-x-0 top-0 flex flex-col
-            ${hasStarted ? "bottom-0" : "bottom-81"}
+            absolute inset-x-0 flex flex-col transition-all duration-500
+            ease-in-out overflow-hidden top-0 
+            ${hasStarted ? "bottom-0" : "bottom-[40%]"}
+			${hasStarted ? "" : "-translate-y-[65%]"}
+			
+            
           `}
         >
 
@@ -423,7 +427,11 @@ export function ChatKitPanel({
 
       {/* 📝 Text below input (same grey box) */}
       {!hasStarted && (
-        <div className="pointer-events-none absolute inset-x-0 bottom-[35px] z-10">
+        <div className={`
+		pointer-events-none absolute inset-x-0 bottom-[5%] z-10 
+		${hasStarted ? "" : "-translate-y-[3%]"}
+		`}
+		>
           
           {/* ✅ Checklist */}
           <div className="mx-auto w-full max-w-2xl px-6">
