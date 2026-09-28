@@ -396,7 +396,7 @@ export function ChatKitPanel({
         </div>
         {!hasStarted && (
           <p className="mt-5 max-w-[643px] rounded-2xl rounded-bl-sm bg-[#345661] px-5 py-4 text-[17px] font-semibold leading-relaxed">
-            Hi, I&apos;m TIMA. What have you protected or tested so far, and what licensing decision are you facing?
+            Hi, I&apos;m TIMA. I can help you choose a next step without describing your invention. Are you at the idea, prototype, filed application, or issued patent stage? You can also ask a general question.
           </p>
         )}
         <div className={`relative min-w-0 overflow-hidden ${hasStarted ? "mt-4 h-[560px]" : "mt-3 h-[92px]"}`}>
@@ -413,7 +413,7 @@ export function ChatKitPanel({
           />
         </div>
       </div>
-      <p className="mt-5 text-sm text-[#b7ced3]">Private conversation · No invention details required to begin</p>
+      <p className="mt-5 text-sm text-[#b7ced3]">No invention details needed. Please avoid sharing confidential information in chat.</p>
     </section>
   );
 

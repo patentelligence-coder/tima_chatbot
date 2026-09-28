@@ -15,24 +15,24 @@ export const CREATE_SESSION_ENDPOINT = "/api/create-session";
 export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "My provisional deadline is approaching",
-    prompt: "My provisional patent application deadline is approaching. Help me understand the decisions and next steps before the deadline. Please start by asking what you need to know, without requiring confidential invention details.",
+    prompt: "My provisional patent application deadline is approaching. Help me understand the decisions and next steps before the deadline. Give general next steps first. If needed, ask only for a rough time window and broad filing stage. Do not request invention details or confidential documents.",
     icon: "lightbulb",
   },
   {
     label: "I have a patent to license",
-    prompt: "I have a patent I want to license to a company. Help me assess my readiness, find a path to potential licensees, and decide what to do next. Please ask one useful question at a time.",
+    prompt: "I have a patent I want to license to a company. Help me assess my readiness, find a path to potential licensees, and decide what to do next. Give a general licensing-readiness checklist first. If needed, ask one optional question about broad stage or goal. Do not ask what the invention is or how it works.",
     icon: "lightbulb",
   },
   {
     label: "I need a path to market",
-    prompt: "I need a path to market for my invention. Help me compare practical commercialization options, including licensing, and identify my next step. Please ask about my stage first.",
+    prompt: "I need a path to market for my invention. Help me compare practical commercialization options, including licensing, and identify my next step. Give broad commercialization options first. If needed, ask only whether I am at idea, prototype, filed application, or issued patent stage. Do not request confidential details.",
     icon: "lightbulb",
   },
 ];
 
 export const PLACEHOLDER_INPUT = "Ask TIMA about licensing";
 
-export const GREETING = "Hello! Where are you in your inventor journey?";
+export const GREETING = "Ask TIMA without describing your invention.";
 
 export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
   colorScheme: theme,
