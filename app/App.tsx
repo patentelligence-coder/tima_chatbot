@@ -17,10 +17,10 @@ export default function App() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start bg-white">
-      <div className="mx-auto w-full">
+    <main className="min-h-screen bg-[#0c171d] px-3 py-4 sm:px-6 sm:py-7">
+      <div className="mx-auto w-full max-w-[864px]">
         <ChatKitPanel
-          theme="light"
+          theme="dark"
           onWidgetAction={handleWidgetAction}
           onResponseEnd={handleResponseEnd}
           onThemeRequest={() => {}}
