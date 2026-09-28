@@ -352,13 +352,13 @@ export function ChatKitPanel({
 
   
   return (
-  <div className="relative flex h-[70vh] w-full flex-col">
+  <div className="flex w-full flex-col py-4">
 
     {/* 🔵 Greeting + Starter Prompts */}
     {!hasStarted && (
       <div className="mx-auto w-full max-w-3xl">
          {/* Starter boxes */}
-        <div className="mb-7 grid grid-cols-4 gap-3">
+        <div className="mb-4 grid grid-cols-2 gap-3 px-3 sm:grid-cols-4">
           {STARTER_PROMPTS.map((p) => (
             <button
               key={p.label}
@@ -376,28 +376,24 @@ export function ChatKitPanel({
     )}
 
     {/* 🩶 BIG Chat Container */}
-    <div className="mt-0 flex-1 flex flex-col justify-start px-3 pb-15">
+    <div className="flex flex-col px-3 pb-4">
       <div
         className={`
-          relative mx-auto flex-1 w-full max-w-2xl max-h-lg
+          relative mx-auto flex w-full max-w-2xl flex-col
           bg-[#faf7fe] dark:bg-[#faf7fe]
           shadow-lg
           justify-start
           overflow-hidden
-          transition-all duration-2500 ease-in-out
-          // ${hasStarted ? "h-full" : "h-[320px]"}
+          transition-all duration-500 ease-in-out
           rounded-[30px]
-          ${hasStarted ? "h-full" : "h-[420px]"}
+          ${hasStarted ? "min-h-[560px]" : ""}
 
         `}
       >
         <div
           className={`
-            absolute inset-x-0 flex flex-col transition-all duration-500
-            ease-in-out overflow-hidden top-0 
-            ${hasStarted ? "bottom-0" : "bottom-[40%]"}
-			${hasStarted ? "" : "-translate-y-[65%]"}
-			
+            relative flex min-h-[260px] w-full flex-col overflow-hidden
+            ${hasStarted ? "flex-1 min-h-[560px]" : ""}
             
           `}
         >
@@ -408,7 +404,7 @@ export function ChatKitPanel({
               className={
                 blockingError || isInitializingSession
                   ? "pointer-events-none opacity-0"
-                  : "min-h-[0rem] w-full"
+                  : "block h-full min-h-[260px] w-full"
               }
             />
         </div>
@@ -427,11 +423,7 @@ export function ChatKitPanel({
 
       {/* 📝 Text below input (same grey box) */}
       {!hasStarted && (
-        <div className={`
-		pointer-events-none absolute inset-x-0 bottom-[5%] z-10 
-		${hasStarted ? "" : "-translate-y-[3%]"}
-		`}
-		>
+        <div className="w-full space-y-4 px-2 pb-5">
           
           {/* ✅ Checklist */}
           <div className="mx-auto w-full max-w-2xl px-6">
@@ -453,7 +445,7 @@ export function ChatKitPanel({
           </div>
 
           {/* 🔒 Privacy Info Box */}
-          <div className="mx-auto mt-4 w-full max-w-2xl px-6">
+          <div className="mx-auto w-full max-w-2xl px-6">
             <div className="rounded-2xl bg-[#faf7fe] px-6 py-4 border border-slate-200 
               shadow-[0_0_8px_rgba(0,0,0,0.25)]">
               <p className="text-lg font-semibold text-slate-800">
@@ -468,7 +460,7 @@ export function ChatKitPanel({
             </div>
           </div>
           {/* 🔵 Book 1-on-1 CTA */}
-          <div className="mt-4 mx-auto w-full max-w-2xl px-6 pointer-events-auto">
+          <div className="mx-auto w-full max-w-2xl px-6">
             <a
               href="https://maintenance.enzumosstrategy.com/"
               target="_blank"
