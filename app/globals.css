@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  color-scheme: light;
+  --background: #0c171d;
+  --foreground: #e6eff1;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -19,52 +19,8 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Container holding starter prompts */
-[data-chatkit-start-screen] {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-/* Individual starter prompt buttons */
-[data-chatkit-start-prompt] {
-  background: #8bedf8;
-  color: #0369a1;
-  border-radius: 14px;
-  padding: 14px 10px;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-}
-
-[data-chatkit-start-prompt]:hover {
-  background: #8bedf8;
-  transform: translateY(-2px);
-}
-
-/* Hide starter prompts once messages exist */
-[data-chatkit-chat]:has([data-chatkit-message]) 
-  [data-chatkit-start-screen] {
-  display: none;
-  text-align: left;
-}
-
-@media (max-width: 768px) {
-  [data-chatkit-start-screen] {
-    grid-template-columns: repeat(2, 1fr);
-    
-  }
-}
-
 openai-chatkit {
   display: block;
   width: 100%;
   min-width: 0;
-}
-
-openai-chatkit > div {
-  padding-top: 0 !important;
 }

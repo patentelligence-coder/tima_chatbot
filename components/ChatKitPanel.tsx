@@ -5,7 +5,6 @@ import { ChatKit, useChatKit } from "@openai/chatkit-react";
 import {
   STARTER_PROMPTS,
   PLACEHOLDER_INPUT,
-  GREETING,
   CREATE_SESSION_ENDPOINT,
   WORKFLOW_ID,
   getThemeConfig,
@@ -268,10 +267,7 @@ export function ChatKitPanel({
       density: "compact",
       ...getThemeConfig(theme),
     },
-    startScreen: {
-      greeting:"Hello inventor",
-    //   // prompts: STARTER_PROMPTS,
-    },
+    startScreen: { greeting: " " },
     composer: {
       placeholder: PLACEHOLDER_INPUT,
       attachments: {
@@ -352,146 +348,67 @@ export function ChatKitPanel({
 
   
   return (
-  <div className="flex w-full flex-col py-4">
+    <section className="mx-auto w-full max-w-[864px] rounded-[30px] bg-[#162b35] px-5 py-7 text-[#e6eff1] sm:px-8 sm:py-8">
+      <header className="flex items-center gap-3">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#70e4ed] text-sm font-semibold text-[#17313b]" aria-hidden="true">EM</span>
+        <div>
+          <h1 className="text-xl font-bold leading-tight">The Inventor&apos;s Mentor</h1>
+          <p className="text-sm text-[#bbd0d5]">Eric McGill</p>
+        </div>
+      </header>
 
-    {/* 🔵 Greeting + Starter Prompts */}
-    {!hasStarted && (
-      <div className="mx-auto w-full max-w-3xl">
-         {/* Starter boxes */}
-        <div className="mb-4 grid grid-cols-2 gap-3 px-3 sm:grid-cols-4">
-          {STARTER_PROMPTS.map((p) => (
-            <button
-              key={p.label}
-              onClick={() => {
-                chatkit.sendUserMessage({ text: p.prompt });
-                setHasStarted(true);
-              }}
-              className="rounded-xl bg-[#8bedf8] px-2 py-4 text-[16px] text-[#2a8aba] hover:bg-[#1b73cd] hover:text-white transition"
-            >
-              {p.label}
-            </button>
-          ))}
+      {!hasStarted && (
+        <>
+          <div className="mt-9">
+            <h2 className="text-[clamp(1.5rem,3.5vw,2rem)] font-bold leading-tight">Want to license or monetize your invention?</h2>
+            <p className="mt-3 text-[17px] leading-relaxed text-[#bbd0d5]">Get clear on your next move, whether you have an application, an issued patent, or a product that needs a path to market.</p>
+          </div>
+          <div className="mt-6 grid grid-cols-1 justify-start gap-2.5 sm:grid-cols-[max-content_max-content]" aria-label="Choose a starting point">
+            {STARTER_PROMPTS.map((prompt) => (
+              <button
+                key={prompt.label}
+                type="button"
+                disabled={Boolean(blockingError) || isInitializingSession}
+                onClick={() => {
+                  setHasStarted(true);
+                  void chatkit.sendUserMessage({ text: prompt.prompt });
+                }}
+                className="rounded-[15px] border border-[#476973] bg-[#2a4a54] px-4 py-4 text-left text-base font-semibold text-[#e3eff1] transition hover:bg-[#365d68] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#70e4ed] disabled:cursor-wait disabled:opacity-60"
+              >
+                {prompt.label}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      <div className="mt-7 min-w-0 rounded-[20px] border border-[#365763] bg-[#1e3741] p-4 sm:p-5">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <h2 className="text-lg font-bold">Ask TIMA</h2>
+          <span className="text-sm text-[#b7ced3]">Your licensing guide</span>
+        </div>
+        {!hasStarted && (
+          <p className="mt-5 max-w-[643px] rounded-2xl rounded-bl-sm bg-[#345661] px-5 py-4 text-[17px] font-semibold leading-relaxed">
+            Hi, I&apos;m TIMA. What have you protected or tested so far, and what licensing decision are you facing?
+          </p>
+        )}
+        <div className={`relative min-w-0 overflow-hidden ${hasStarted ? "mt-4 h-[560px]" : "mt-3 h-[92px]"}`}>
+          <ChatKit
+            key={widgetInstanceKey}
+            control={chatkit.control}
+            className={blockingError || isInitializingSession ? "pointer-events-none opacity-0" : "block h-full min-w-0 w-full"}
+          />
+          <ErrorOverlay
+            error={blockingError}
+            fallbackMessage={blockingError || !isInitializingSession ? null : "Loading assistant session..."}
+            onRetry={blockingError && errors.retryable ? handleResetChat : null}
+            retryLabel="Restart chat"
+          />
         </div>
       </div>
-    )}
-
-    {/* 🩶 BIG Chat Container */}
-    <div className="flex flex-col px-3 pb-4">
-      <div
-        className={`
-          relative mx-auto flex w-full min-w-0 max-w-2xl flex-col
-          bg-[#faf7fe] dark:bg-[#faf7fe]
-          shadow-lg
-          justify-start
-          overflow-hidden
-          transition-all duration-500 ease-in-out
-          rounded-[30px]
-          ${hasStarted ? "min-h-[560px]" : ""}
-
-        `}
-      >
-        <div
-          className={`
-            relative flex min-w-0 w-full flex-col overflow-hidden
-            ${hasStarted ? "h-[560px]" : "h-[260px]"}
-            
-          `}
-        >
-
-            <ChatKit
-              key={widgetInstanceKey}
-              control={chatkit.control}
-              className={
-                blockingError || isInitializingSession
-                  ? "pointer-events-none opacity-0"
-                  : "block h-full min-w-0 w-full"
-              }
-            />
-        </div>
-
-        <ErrorOverlay
-          error={blockingError}
-          fallbackMessage={
-            blockingError || !isInitializingSession
-              ? null
-              : "Loading assistant session..."
-          }
-          onRetry={blockingError && errors.retryable ? handleResetChat : null}
-          retryLabel="Restart chat"
-        />
-      
-
-      {/* 📝 Text below input (same grey box) */}
-      {!hasStarted && (
-        <div className="w-full space-y-4 px-2 pb-5">
-          
-          {/* ✅ Checklist */}
-          <div className="mx-auto w-full max-w-2xl px-6">
-            <div className="space-y-3 text-m text-[#11182c]">
-              <div className="flex items-start gap-3">
-                <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#dadada] text-sm text-[#4f4f4f]">
-                  ✔
-                </span>
-                <span>Free Early-Stage Due Diligence Checklist</span>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#dadada] text-sm text-[#4f4f4f]">
-                  ✔
-                </span>
-                <span>Free Inventor’s Next Step Guide</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 🔒 Privacy Info Box */}
-          <div className="mx-auto w-full max-w-2xl px-6">
-            <div className="rounded-2xl bg-[#faf7fe] px-6 py-4 border border-slate-200 
-              shadow-[0_0_8px_rgba(0,0,0,0.25)]">
-              <p className="text-lg font-semibold text-slate-800">
-                All information is private and not seen by me.
-              </p>
-
-              <p className="mt-1 text-m leading-relaxed text-[#11182c]">
-                Get most of your questions answered without disclosing sensitive details.
-                <br />
-                Need specific help with your invention? Happy to sign an NDA for full confidentiality.
-              </p>
-            </div>
-          </div>
-          {/* 🔵 Book 1-on-1 CTA */}
-          <div className="mx-auto w-full max-w-2xl px-6">
-            <a
-              href="https://maintenance.enzumosstrategy.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                inline-block
-                rounded-xl
-                bg-[#8bedf8]
-                px-5 py-3
-                text-left
-                text-base font-semibold
-                text-[#1b73cd]
-                transition
-                hover:bg-blue-700
-                hover:shadow-[0_0_18px_rgba(59,130,246,0.45)]
-                hover:text-white
-              "
-            >
-              Book 1-on-1 Mentoring
-            </a>
-          </div>
-
-        </div>
-)}
-
-
-        </div>
-    </div>
-
-  </div>
-);
+      <p className="mt-5 text-sm text-[#b7ced3]">Private conversation · No invention details required to begin</p>
+    </section>
+  );
 
 }
 
