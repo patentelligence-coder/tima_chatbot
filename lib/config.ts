@@ -14,48 +14,42 @@ export const CREATE_SESSION_ENDPOINT = "/api/create-session";
 // ];
 export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
-    label: "I just have an idea",
-    prompt: "I just have an idea",
+    label: "My provisional deadline is approaching",
+    prompt: "My provisional patent application deadline is approaching. Help me understand the decisions and next steps before the deadline. Please start by asking what you need to know, without requiring confidential invention details.",
     icon: "lightbulb",
   },
   {
-    label: "I have an invention",
-    prompt: "I have an invention",
+    label: "I have a patent to license",
+    prompt: "I have a patent I want to license to a company. Help me assess my readiness, find a path to potential licensees, and decide what to do next. Please ask one useful question at a time.",
     icon: "lightbulb",
   },
   {
-    label: "I want to license",
-    prompt: "I want to license",
-    icon: "lightbulb",
-  },
-  {
-    label: "I need next steps",
-    prompt: "I need next steps",
+    label: "I need a path to market",
+    prompt: "I need a path to market for my invention. Help me compare practical commercialization options, including licensing, and identify my next step. Please ask about my stage first.",
     icon: "lightbulb",
   },
 ];
 
-export const PLACEHOLDER_INPUT = "Select an option above or type your question here to get started.";
+export const PLACEHOLDER_INPUT = "Ask TIMA about licensing";
 
 export const GREETING = "Hello! Where are you in your inventor journey?";
 
 export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
+  colorScheme: theme,
   color: {
     grayscale: {
-      hue: 220,
-      tint: 6,
-      shade: theme === "dark" ? -1 : -4,
+      hue: 195,
+      tint: 4,
+      shade: -1,
     },
     accent: {
-      primary: theme === "dark" ? "#0f172a" : "#0f172a",
+      primary: "#70e4ed",
       level: 1,
     },
-     surface: {
-        background: '#faf7fe',
-        foreground: '#c5f5fa'
-      }
+    surface: {
+      background: "#1e3741",
+      foreground: "#294a55",
+    },
   },
-  radius: 'pill',
-  // Add other theme options here
-  // chatkit.studio/playground to explore config options
+  radius: "round",
 });
