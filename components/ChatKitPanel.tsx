@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ChatKit, useChatKit } from "@openai/chatkit-react";
 import {
   STARTER_PROMPTS,
@@ -349,11 +350,17 @@ export function ChatKitPanel({
   
   return (
     <section className="mx-auto w-full max-w-[864px] rounded-[30px] bg-[#162b35] px-5 py-7 text-[#e6eff1] sm:px-8 sm:py-8">
-      <header className="flex items-center gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#70e4ed] text-sm font-semibold text-[#17313b]" aria-hidden="true">EM</span>
-        <div>
-          <h1 className="text-xl font-bold leading-tight">The Inventor&apos;s Mentor</h1>
-          <p className="text-sm text-[#bbd0d5]">Eric McGill</p>
+      <header>
+        <h1 className="sr-only">The Inventor&apos;s Mentor by Eric McGill</h1>
+        <div className="h-[150px] w-[260px] max-w-full overflow-hidden">
+          <Image
+            src="/mentor-logo.png"
+            alt="Eric McGill, The Inventor's Mentor"
+            width={1500}
+            height={1500}
+            priority
+            className="h-full w-full object-cover"
+          />
         </div>
       </header>
 
