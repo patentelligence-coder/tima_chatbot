@@ -267,7 +267,7 @@ export function ChatKitPanel({
       density: "compact",
       ...getThemeConfig(theme),
     },
-    startScreen: { greeting: " " },
+    startScreen: { greeting: "Ask TIMA" },
     composer: {
       placeholder: PLACEHOLDER_INPUT,
       attachments: {
@@ -396,7 +396,7 @@ export function ChatKitPanel({
           <ChatKit
             key={widgetInstanceKey}
             control={chatkit.control}
-            className={blockingError || isInitializingSession ? "pointer-events-none opacity-0" : "block h-full min-w-0 w-full"}
+            className={`${hasStarted ? "relative h-full" : "absolute bottom-0 h-[260px]"} block min-w-0 w-full ${blockingError || isInitializingSession ? "pointer-events-none opacity-0" : ""}`}
           />
           <ErrorOverlay
             error={blockingError}
