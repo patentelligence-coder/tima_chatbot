@@ -363,7 +363,7 @@ export function ChatKitPanel({
             <h2 className="text-[clamp(1.5rem,3.5vw,2rem)] font-bold leading-tight">Want to license or monetize your invention?</h2>
             <p className="mt-3 text-[17px] leading-relaxed text-[#bbd0d5]">Get clear on your next move, whether you have an application, an issued patent, or a product that needs a path to market.</p>
           </div>
-          <div className="mt-6 flex flex-wrap gap-2.5" aria-label="Choose a starting point">
+          <div className="mt-6 grid grid-cols-1 justify-start gap-2.5 sm:grid-cols-[max-content_max-content]" aria-label="Choose a starting point">
             {STARTER_PROMPTS.map((prompt) => (
               <button
                 key={prompt.label}
