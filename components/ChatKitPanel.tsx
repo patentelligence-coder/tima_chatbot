@@ -193,9 +193,9 @@ export function ChatKitPanel({
           body: JSON.stringify({
             workflow: { id: WORKFLOW_ID },
             chatkit_configuration: {
-              // enable attachments
+              // Public chat does not collect confidential files.
               file_upload: {
-                enabled: true,
+                enabled: false,
               },
             },
           }),
