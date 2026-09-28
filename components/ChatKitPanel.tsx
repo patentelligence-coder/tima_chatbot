@@ -379,7 +379,7 @@ export function ChatKitPanel({
     <div className="flex flex-col px-3 pb-4">
       <div
         className={`
-          relative mx-auto flex w-full max-w-2xl flex-col
+          relative mx-auto flex w-full min-w-0 max-w-2xl flex-col
           bg-[#faf7fe] dark:bg-[#faf7fe]
           shadow-lg
           justify-start
@@ -392,8 +392,8 @@ export function ChatKitPanel({
       >
         <div
           className={`
-            relative flex min-h-[260px] w-full flex-col overflow-hidden
-            ${hasStarted ? "flex-1 min-h-[560px]" : ""}
+            relative flex min-w-0 w-full flex-col overflow-hidden
+            ${hasStarted ? "h-[560px]" : "h-[260px]"}
             
           `}
         >
@@ -404,7 +404,7 @@ export function ChatKitPanel({
               className={
                 blockingError || isInitializingSession
                   ? "pointer-events-none opacity-0"
-                  : "block h-full min-h-[260px] w-full"
+                  : "block h-full min-w-0 w-full"
               }
             />
         </div>
